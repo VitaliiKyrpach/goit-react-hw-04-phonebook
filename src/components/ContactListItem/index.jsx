@@ -3,7 +3,7 @@ export const ContactListItem = ({ id, user, phone }) => {
   const { handleDelete } = useUser();
   return (
     <li>
-      {user}: {phone}{' '}
+      {user}: {phone}
       <button type="button" onClick={() => handleDelete(id)}>
         delete
       </button>

@@ -22,7 +22,7 @@ export const ContactForm = ({ addUser }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    addUser({ id: nanoid(), user: name, phone: number });
+    addUser({ id: nanoid(), name: name, number: number });
     setName('');
     setNumber('');
   };
