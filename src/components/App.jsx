@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
 import { Filter } from './Filter';
@@ -30,9 +30,14 @@ export const App = () => {
   const handleChange = e => {
     setFilter(e.target.value);
   };
-  const filtered = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter)
-  );
+  const filtered = useMemo(() => {
+    return (
+      contacts &&
+      contacts.filter(contact => {
+        return contact.name.toLowerCase().includes(filter);
+      })
+    );
+  }, [contacts, filter]);
   const handleDelete = id => {
     const deleted = contacts.filter(contact => contact.id !== id);
     setContacts(deleted);
