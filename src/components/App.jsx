@@ -11,11 +11,7 @@ const init = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 export const App = () => {
-  const [contacts, setContacts] = useState(
-    JSON.parse(localStorage.getItem('users')).length
-      ? JSON.parse(localStorage.getItem('users'))
-      : init
-  );
+  const [contacts, setContacts] = useState(null);
 
   const [filter, setFilter] = useState('');
 
@@ -42,7 +38,14 @@ export const App = () => {
     const deleted = contacts.filter(contact => contact.id !== id);
     setContacts(deleted);
   };
-
+  useEffect(() => {
+    setContacts(
+      JSON.parse(localStorage.getItem('users')) &&
+        JSON.parse(localStorage.getItem('users')).length
+        ? JSON.parse(localStorage.getItem('users'))
+        : init
+    );
+  }, []);
   useEffect(() => {
     localStorage.setItem('users', JSON.stringify(contacts));
   }, [contacts]);
