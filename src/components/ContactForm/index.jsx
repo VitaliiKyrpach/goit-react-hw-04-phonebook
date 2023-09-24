@@ -1,20 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 export const ContactForm = ({ addUser }) => {
-  const [name, setName] = useState(
-    JSON.parse(localStorage.getItem('name')) ?? ''
-  );
-  const [number, setNumber] = useState(
-    JSON.parse(localStorage.getItem('number')) ?? ''
-  );
-
-  useEffect(() => {
-    localStorage.setItem('name', JSON.stringify(name));
-  }, [name]);
-  useEffect(() => {
-    localStorage.setItem('number', JSON.stringify(number));
-  }, [number]);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
